@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head><title>Login</title></head>
+<body>
+  <h2>Login</h2>
+  <form method="POST" action="{{ url_for('main.login') }}">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }}<br>
+      {{ form.username(class="form-control") }}
+    </p>
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(class="form-control") }}
+    </p>
+    <p>{{ form.submit(class="btn btn-primary") }}</p>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</body>
+</html>
